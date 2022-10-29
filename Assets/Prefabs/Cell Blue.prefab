@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 1438968882639343453}
   m_Layer: 5
   m_Name: Cell Blue
-  m_TagString: Untagged
+  m_TagString: Blue
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

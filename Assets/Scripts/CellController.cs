@@ -9,8 +9,7 @@ public class CellController : MonoBehaviour
     private GameObject? TargetCellObj;
     private Cell? CurrentCell;
     private Cell? TargetCell;
-
-    // Update is called once per frame
+    [SerializeField] private GameObject WinContoroller;
     void Update()
     {
         if (Input.GetMouseButtonDown(0))
@@ -24,19 +23,31 @@ public class CellController : MonoBehaviour
                 {
                     OffBackLightNeighbour();
                     (CurrentCellObj, CurrentCell) = SelectCell(hitObj);
-                    Debug.Log(CurrentCellObj);
+                    if (SelectNeighbours.Count == 0)
+                        SetParamsToNull();
                 }
                 else    //Case ___Cell_Select
                 {
                     (TargetCellObj, TargetCell) = SelectNeighbourCell(hitObj);
+
                     if (TargetCell != null)
                     {
                         if (SelectNeighbours.Contains(TargetCell))
                         {
+
                             TargetCell.SetParent(CurrentCell.ContentStorage.GetChild(0), CurrentCellObj);
+                            WinContoroller.SendMessage("Win");
                             OffBackLightNeighbour();
                             SetParamsToNull();
                         }
+
+                    }
+                    else
+                    {
+                        OffBackLightNeighbour();
+                        (CurrentCellObj, CurrentCell) = SelectCell(hitObj);
+                        if (SelectNeighbours.Count == 0)
+                            SetParamsToNull();
                     }
                 }
             }

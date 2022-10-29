@@ -4,38 +4,24 @@ using UnityEngine;
 
 public class RandomContentCell : MonoBehaviour
 {
-    public List<Cell> AllCells;
-    private int RedCellCount = 0;
-    private int BlueCellCount = 0;
-    private int GreenCellCount = 0;
-    void Start()
+    [SerializeField] private List<GameObject> AllContent;
+    [SerializeField] private List<GameObject> AllCell;
+    private List<int> check = new List<int>();
+    void Awake()
     {
-        for (int i = 0; i < transform.childCount; i++)
+        int i = 14;
+        while (AllContent.Count != 0)
         {
-            if (transform.GetChild(i).tag != "Block")
+            int j = Random.Range(0, AllCell.Count - 1);
+            while (check.Contains(j))
             {
-                int randomNumber = Random.Range(0, 2);
-                switch (randomNumber)
-                {
-                    case 0:
-                        break;
-                    case 1:
-
-                        break;
-                    case 2:
-
-                        break;
-                    default:
-
-                        break;
-                }
+                j = Random.Range(0, AllCell.Count - 1);
             }
+            var q = Instantiate(AllContent[i], AllCell[j].transform);
+            check.Add(j);
+            AllContent.RemoveAt(i);
+            i--;
         }
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
 }

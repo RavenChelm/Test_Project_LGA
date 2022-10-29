@@ -7,9 +7,7 @@ public class Cell : MonoBehaviour
     public List<Cell> neighbours;
     private GameObject BackLightPanel;
     public Transform ContentStorage;
-    [SerializeField] private GameObject RedCell;
-    [SerializeField] private GameObject BlueCell;
-    [SerializeField] private GameObject GreenCell;
+    public int thisIndex;
     private void Start()
     {
         var trn = GetComponent<Transform>();
@@ -21,7 +19,7 @@ public class Cell : MonoBehaviour
         {
             this.tag = "Fill";
         }
-        if (int.TryParse(this.name.Substring(4), out int thisIndex))
+        if (int.TryParse(this.name.Substring(4), out thisIndex))
         {
             if (thisIndex % 5 == 0)
             {
